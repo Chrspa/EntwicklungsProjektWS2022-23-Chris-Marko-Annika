@@ -1,7 +1,12 @@
 # EntwicklungsProjektWS2022-23-Chris-Marko-Annika
 Repository von Christian Pankiv, Marko Kalaburda, Annika Lenneper
 
-Darstellung des Problemraums 
+
+
+Dieses Repository stellt den inhalt des Projektes der Teamarbeit in einem Exposé dar. Hier werden alle Relevanten Projektschritte, Artefakte und Prototypen vorgestellt und erläutert.
+
+
+<h1>Darstellung des Problemraums </h1> 
 
 Menschen streben danach, sich selbst zu verbessern. Wir haben gute Vorsätze, scheitern jedoch allzu häufig an der Umsetzung, sei es, weil die Ziele zu groß und unerreichbar scheinen, weil die Motivation im Laufe der Zeit abnimmt oder weil alte Gewohnheiten den gewünschten Verhaltensweisen entgegenstehen. Die Schere zwischen den eigenen Erwartungen und dem Scheitern bei der Umsetzung in die Realität erzeugt eine kognitive Dissonanz, die als unangenehm empfunden wird, sodass man sich der Vorsätze lieber entledigt und allerlei Ausreden für die Unmöglichkeit ihres Einhaltens erfindet. 
 
@@ -19,5 +24,4 @@ Das System hat in erster Linie eine individuelle Relevanz. Die Wünsche, Vorstel
 
 
 
-Dieses Repository stellt den inhalt des Projektes der Teamarbeit in einem Exposé dar. Hier werden alle Relevanten Projektschritte, Artefakte und Prototypen vorgestellt und erläutert.
 

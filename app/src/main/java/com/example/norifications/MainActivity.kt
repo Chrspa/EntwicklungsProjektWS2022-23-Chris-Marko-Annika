@@ -10,73 +10,35 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.work.*
 import com.example.norifications.databinding.ActivityMainBinding
+import java.util.concurrent.TimeUnit
 
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivityMainBinding
-    private val CHANNEL_ID = "channel_id"
-    private val NOTIFICATION_ID = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_main)
 
-        binding.notibtn.setOnClickListener {
-            showNotification()
-        }
+
+        myWorkManager()
+
     }
 
-    private fun showNotification(){
-        val intent= Intent(this,MainActivity::class.java)
-        val pendingIntent= PendingIntent.getActivity(this,1,intent,if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            PendingIntent.FLAG_IMMUTABLE
-        } else {
-            PendingIntent.FLAG_UPDATE_CURRENT
-        })
+    private fun myWorkManager() {
+        val constraints= Constraints.Builder()
+            .setRequiresCharging(false)
+            .setRequiredNetworkType(NetworkType.NOT_REQUIRED)
+            .setRequiresCharging(false)
+            .setRequiresBatteryNotLow(true)
+            .build()
 
-        val siuIntent= Intent(this,Celebration::class.java)
-        val siuPendingIntent= PendingIntent.getActivity(this,2,siuIntent,if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            PendingIntent.FLAG_IMMUTABLE
-        } else {
-            PendingIntent.FLAG_UPDATE_CURRENT
-        })
+        val myRequest = PeriodicWorkRequest.Builder(MyWorker::class.java,15, TimeUnit.MINUTES)
+            .setConstraints(constraints)
+            .build()
 
-        val sadIntent= Intent(this,Sad::class.java)
-        val sadPendingIntent= PendingIntent.getActivity(this,2,sadIntent,if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            PendingIntent.FLAG_IMMUTABLE
-        } else {
-            PendingIntent.FLAG_UPDATE_CURRENT
-        })
-
-        val builder = NotificationCompat.Builder(this, CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_notifications)
-            .setContentTitle("My notification")
-            .setContentText("Hast du es gemacht oder willst du sterben ?! ")
-            .setPriority(NotificationCompat.PRIORITY_MAX)
-            .setContentIntent(pendingIntent)
-            .addAction(R.drawable.ic_siu,"Done it all!",siuPendingIntent)
-            .addAction(R.drawable.ic_sad,"I'm dead",sadPendingIntent)
-
-
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            val channelName = "Channel Name"
-            val channelDescription = "Channel Description"
-            val channelImportance = NotificationManager.IMPORTANCE_HIGH
-
-            val channel = NotificationChannel(CHANNEL_ID, channelName, channelImportance).apply {
-                description = channelDescription
-            }
-
-            val notificationManager: NotificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-
-            notificationManager.createNotificationChannel(channel)
-        }
-
-        with(NotificationManagerCompat.from(this)){
-            notify(NOTIFICATION_ID, builder.build())
-        }
+        WorkManager.getInstance(this).enqueueUniquePeriodicWork("my_id",ExistingPeriodicWorkPolicy.KEEP,myRequest)
     }
 }

@@ -60,7 +60,7 @@ class MyWorker(context: Context,workerParams:WorkerParameters): Worker(context,w
             .setPriority(NotificationCompat.PRIORITY_MAX)
             .setContentIntent(pendingIntent)
             .addAction(R.drawable.ic_siu,"Done it all!",siuPendingIntent)
-            .addAction(R.drawable.ic_sad,"I'm dead",sadPendingIntent)
+            .addAction(R.drawable.ic_sad,"I wasn´t able to do it" ,sadPendingIntent)
 
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){

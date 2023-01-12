@@ -180,6 +180,7 @@ class MainActivity : AppCompatActivity() {
                 1 -> textView.text =
                     "Wir konnten nur 1 \"Golden Behavior\" identifizieren. Es lautet: ${goldenBehaviors[0].name}."
                 0 -> textView.text = "Leider hat keines deiner gesammelten Verhaltensweisen "
+                else -> println("Es sieht so aus, als hättest du mehr als 3 Golden Behaviors gesammelt.")
             }
         }
 

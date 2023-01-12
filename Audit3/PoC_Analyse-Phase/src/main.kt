@@ -135,9 +135,8 @@ class Goal(val name: String){
         behaviors.sortByDescending { it.ease }
         println("Die für dich leichtesten Verhaltensweisen sind ${behaviors[0].name}, ${behaviors[1].name} und ${behaviors[2].name}")
 
-        //muss noch überarbeitet werden
         //Behavior-Liste soll erhalten bleiben, damit darauf in der Review-Phase zurückgegriffen werden kann
-        // das Kriterium >5 entspricht der Fogg'schen Focus Map
+        // das Kriterium >5 von 10 ist von der Fogg'schen Focus Map abstrahiert
         goldenBehaviors = behaviors.filter { it.efficiency > 5 && it.ease > 5 }.toMutableList()
         goldenBehaviors.sortedByDescending { it.ease }
         goldenBehaviors.sortedByDescending { it.efficiency }
@@ -148,14 +147,14 @@ class Goal(val name: String){
             3 -> println("Deine Golden Behaviors sind ${goldenBehaviors[0].name}, ${goldenBehaviors[1].name} und ${goldenBehaviors[2].name}.")
             2 -> println("Deine Golden Behaviors sind ${goldenBehaviors[0].name}, ${goldenBehaviors[1].name} und ${goldenBehaviors[2].name}.")
             1 -> println("Wir konnten nur 1 \"Golden Behavior\" identifizieren. Es lautet: ${goldenBehaviors[0].name}.")
-            0 -> println("Leider hat keines deiner gesammelten Verhaltensweisen ")
+            0 -> println("Leider hat keines deiner gesammelten Verhaltensweisen die Kriterien eines \"Golden Behaviors\" erfüllt.")
+            else -> println("Es sieht so aus, als hättest du mehr als 3 Golden Behaviors gesammelt.")
         }
 
     }
 
     fun createRecipe(){}
 }
-
 
 
 
@@ -168,15 +167,11 @@ fun main() {
     println("Wir möchten nun passende Verhaltensweisen zu deinem Ziel finden! Legen wir los!" +
             "Gib bitte 5 Verhaltensweisen ein, dann geht es weiter.")
 
-    newProfile.goals[0].createBehavior()
-    newProfile.goals[0].createBehavior()
-    newProfile.goals[0].createBehavior()
-    newProfile.goals[0].createBehavior()
-    newProfile.goals[0].createBehavior()
-
+    repeat(5){
+        newProfile.goals[0].createBehavior()
+    }
 
     newProfile.goals[0].setEfficiencyAndEase()
-
     newProfile.goals[0].getGoldenBehaviors()
 
 }

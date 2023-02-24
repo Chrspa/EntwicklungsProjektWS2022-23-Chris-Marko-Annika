@@ -5,6 +5,8 @@ Repository von Christian Pankiv, Marko Kalaburda, Annika Lenneper
 
 Dieses Repository stellt den inhalt des Projektes der Teamarbeit in einem Exposé dar. Hier werden alle Relevanten Projektschritte, Artefakte und Prototypen vorgestellt und erläutert.
 
+DER ERSTELLTE PROTOTYP FÜR AUDIT 4 IST IN EINEM ANDEREN REPOSITORY AUS ORGANISATIONS GRÜNDEN! BITTE IN AUDIT 4 EINSEHEN!
+
 
 <h2>Darstellung des Problemraums </h2> 
 
